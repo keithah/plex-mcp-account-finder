@@ -18,7 +18,7 @@ export const configSchema = z.object({
         client_identifier: z.string().optional(),
       })
     )
-    .nonempty('At least one Plex account is required'),
+    .default([]),
 });
 
 type ServerConfig = z.infer<typeof configSchema>;
@@ -59,13 +59,6 @@ export default function createServer({
 }: {
   config: ServerConfig;
 }) {
-  const logger = new Logger(config.log_level as LogLevel, 'plex-mcp');
-  logger.info('Starting Plex MCP Account Finder', {
-    accounts: config.accounts.length,
-    cache_ttl_seconds: config.cache_ttl_seconds,
-    log_level: config.log_level,
-  });
-
   const accountConfigs: ConfigAccount[] = config.accounts.map((acct) => {
     const base: ConfigAccount = {
       label: acct.label,
@@ -76,6 +69,17 @@ export default function createServer({
     }
     return base;
   });
+
+  const logger = new Logger(config.log_level as LogLevel, 'plex-mcp');
+  logger.info('Starting Plex MCP Account Finder', {
+    accounts: accountConfigs.length,
+    cache_ttl_seconds: config.cache_ttl_seconds,
+    log_level: config.log_level,
+  });
+
+  if (accountConfigs.length === 0) {
+    logger.warn('No Plex accounts configured. Tools will operate in read-only/degraded mode until tokens are provided.');
+  }
 
   const manager = new PlexAccountManager(
     accountConfigs,
