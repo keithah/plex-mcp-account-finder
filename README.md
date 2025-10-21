@@ -1,4 +1,5 @@
 # Plex MCP Account Finder
+[![smithery badge](https://smithery.ai/badge/@keithah/plex-mcp-account-finder)](https://smithery.ai/server/@keithah/plex-mcp-account-finder)
 
 Model Context Protocol server that connects to multiple Plex accounts, aggregates server user access, and exposes tools for fuzzy user lookup and login token generation. Built on the official Plex APIs using the `smithery` TypeScript runtime.
 
@@ -8,6 +9,14 @@ Model Context Protocol server that connects to multiple Plex accounts, aggregate
 - Validate account connectivity and list owned/shared servers with `plex_status`.
 - Generate Plex authentication URLs (PIN-based) and poll them to capture new tokens via MCP tools.
 - Configurable caching to avoid hammering Plex endpoints when running repeated queries.
+
+### Installing via Smithery
+
+To install Plex Account Finder automatically via [Smithery](https://smithery.ai/server/@keithah/plex-mcp-account-finder):
+
+```bash
+npx -y @smithery/cli install @keithah/plex-mcp-account-finder
+```
 
 ## Configuration
 `smithery.yaml` already points to `src/index.ts`. Provide a config object that matches `configSchema`:
