@@ -1,0 +1,33 @@
+{
+  "name": "plex-mcp-account-finder",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for searching Plex accounts across servers and managing auth tokens",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build:stdio && npm run build:shttp",
+    "build:stdio": "smithery build src/index.ts --transport stdio -o .smithery/stdio/index.cjs",
+    "build:shttp": "smithery build src/index.ts --transport shttp -o .smithery/shttp/index.cjs",
+    "dev": "smithery dev",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "module": "./src/index.ts",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.1",
+    "@smithery/sdk": "^1.7.4",
+    "axios": "^1.12.2",
+    "fuse.js": "^7.1.0",
+    "uuid": "^13.0.0",
+    "xml2js": "^0.6.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@smithery/cli": "^1.6.2",
+    "@types/node": "^24.9.1",
+    "@types/xml2js": "^0.4.14",
+    "typescript": "^5.9.3"
+  }
+}
