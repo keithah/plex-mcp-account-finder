@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/keithah-plex-mcp-account-finder-badge.png)](https://mseep.ai/app/keithah-plex-mcp-account-finder)
+
 # Plex MCP Account Finder
 
 Model Context Protocol server that connects to multiple Plex accounts, aggregates server user access, and exposes tools for fuzzy user lookup and login token generation. Built on the official Plex APIs using the `smithery` TypeScript runtime.
